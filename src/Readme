@@ -1,0 +1,15 @@
+All Octopus modules (oct-module) are store here. 
+Every module's folders must be named like oct-'module name'.
+
+The following files are all required:
+  1.  package.json
+  2.  index.js
+  3.  Readme
+
+The following files are optional:
+  1.  init.js
+  2.  api.js
+  3.  rest.js
+
+If the init.js and rest.js files are exist, they load at startup.
+

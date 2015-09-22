@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "nshopapi",
+    "password": "12345abcde",
+    "database": "nshop_development",
+    "host": "192.168.0.25",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "nshopapi",
+    "password": "12345abcde",
+    "database": "nshop_test",
+    "host": "192.168.0.25",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "nshopapi",
+    "password": "12345abcde",
+    "database": "nshop_production",
+    "host": "192.168.0.25",
+    "dialect": "postgres"
+  }
+}

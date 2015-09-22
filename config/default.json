@@ -1,0 +1,21 @@
+{
+  "server": {
+    "port": 3000,
+    "secret": "DJLVIA09",
+    "session": {
+      "key": "oct_sid",
+      "maxAge": 24,
+      "secure": false
+    }
+  },
+  "redis": {
+    "host": "localhost",
+    "port":	6379
+  },
+  "modules": {
+    "exclude": ["users", "profiles"]
+  },
+  "log": {
+    "filename": "log/application.log"
+  }
+}
