@@ -4,7 +4,7 @@ var modules = require('../lib/modules');
 
 describe('Modules initialization', function() {
 	describe('Get modules sorted by priority', function () {
-		var root = __dirname + '/../..';
+		var root = __dirname + '/../../api';
 		it('should return sorted modules list', function() {
 			var m = modules.getSortedModules(root);
 

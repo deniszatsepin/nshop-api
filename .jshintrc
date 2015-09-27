@@ -1,0 +1,6 @@
+{
+  "esnext": true,
+  "node": true,
+  "noyield": true,
+  "expr": true
+}

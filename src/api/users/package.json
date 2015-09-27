@@ -1,5 +1,5 @@
 {
-  "name": "oct-user",
+  "name": "users",
   "version": "0.0.1",
   "description": "User manipulation for Octopus project.",
   "main": "lib/init.js",

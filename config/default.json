@@ -13,7 +13,7 @@
     "port":	6379
   },
   "modules": {
-    "exclude": ["users", "profiles"]
+    "exclude": ["profiles"]
   },
   "log": {
     "filename": "log/application.log"

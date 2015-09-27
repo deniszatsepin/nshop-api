@@ -13,7 +13,7 @@ const rester    = core.rester;
 const logger    = core.logger;
 
 module.exports = function() {
-	logger.info("oct-user initialization...");
+	logger.info("Users initialization...");
 	var rest      = require('./rest');
 	var router 		= rester(rest.handlers);
 	server.use(mount('/users', router.middleware()));

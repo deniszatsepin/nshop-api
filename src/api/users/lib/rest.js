@@ -1,40 +1,38 @@
-const _         = require('lodash');
-const util      = require('util');
+const _       = require('lodash');
+const util    = require('util');
 const core    = require('../../../core');
-const models    = core.models;
-const logger    = core.logger;
+const models  = core.models;
+const logger  = core.logger;
 
 var Users = models.Users;
 
 var createUser = function *createUser(next) {
 
-  this.checkBody('email').notEmpty('Email field is required').isEmail('You enter a bad email.');
-  this.checkBody('password').notEmpty('Email field is required').len(3,20);
+  //this.checkBody('email').notEmpty('Email field is required').isEmail('You enter a bad email.');
+  //this.checkBody('password').notEmpty('Email field is required').len(3,20);
 
   if (this.errors) {
     this.body = {
       errors: this.errors
     };
-    this.response.status = 401;
+    this.response.status = 422;
     return;
   }
 
-  var user = new User({
+  var user = Users.build({
     email: this.request.body.email,
     password: this.request.body.password
   });
 
   try {
-    user = yield user.saveAsync();
+    user = yield user.save();
   } catch(e) {
-    if (e.name === 'ValidationError') { //if validation errors, show them to the user
+    debugger;
+    if (e instanceof user.sequelize.ValidationError) { //if validation errors, show them to the user
       this.body = {
-        errors: _.map(e.errors, function(val, key) {
-          var err = {};
-          err[key] = val.message;
-          return err;
-        })
+        errors: e.errors
       };
+      this.response.status = 422;
       return;
     } else { //if other errors, throw them up
       throw e;
@@ -43,8 +41,8 @@ var createUser = function *createUser(next) {
 
   this.body = {
     data: {
-      _id: user[0]._id,
-      email: user[0].email
+      id: user.getDataValue('id'),
+      email: user.getDataValue('email')
     }
   };
 };
