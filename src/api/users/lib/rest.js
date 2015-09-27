@@ -8,17 +8,6 @@ var Users = models.Users;
 
 var createUser = function *createUser(next) {
 
-  //this.checkBody('email').notEmpty('Email field is required').isEmail('You enter a bad email.');
-  //this.checkBody('password').notEmpty('Email field is required').len(3,20);
-
-  if (this.errors) {
-    this.body = {
-      errors: this.errors
-    };
-    this.response.status = 422;
-    return;
-  }
-
   var user = Users.build({
     email: this.request.body.email,
     password: this.request.body.password
@@ -39,6 +28,7 @@ var createUser = function *createUser(next) {
     }
   }
 
+  //if no validation errors
   this.body = {
     data: {
       id: user.getDataValue('id'),
