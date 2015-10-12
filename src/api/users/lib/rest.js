@@ -6,7 +6,7 @@ const logger  = core.logger;
 
 var Users = models.Users;
 
-var createUser = function *createUser(next) {
+function *createUser(next) {
 
   var user = Users.build({
     email: this.request.body.email,
@@ -35,16 +35,21 @@ var createUser = function *createUser(next) {
       email: user.getDataValue('email')
     }
   };
-};
+}
 
-var destroyUser = function *destroyUser(next) {
+function *updateUser(next) {
+
+}
+
+function *destroyUser(next) {
   this.body = {
     error: 0,
     message: 'session destroyed'
   };
-};
+}
 
 module.exports.handlers = {
   create: createUser,
+  update: updateUser,
   destroy: destroyUser
 };
