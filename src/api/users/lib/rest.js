@@ -1,22 +1,17 @@
 const _       = require('lodash');
 const util    = require('util');
 const core    = require('../../../core');
-const models  = core.models;
 const logger  = core.logger;
+const User    = require('./user_controller');
 
-var Users = models.Users;
 
 function *createUser(next) {
-
-  var user = Users.build({
-    email: this.request.body.email,
-    password: this.request.body.password
-  });
+  let body = this.request.body;
+  let user;
 
   try {
-    user = yield user.save();
+    user = yield User.create(body.username, body.password);
   } catch(e) {
-    debugger;
     if (e instanceof user.sequelize.ValidationError) { //if validation errors, show them to the user
       this.body = {
         errors: e.errors
@@ -38,7 +33,9 @@ function *createUser(next) {
 }
 
 function *updateUser(next) {
-
+  var user = this.user;
+  //validate old password
+  //set new password
 }
 
 function *destroyUser(next) {
